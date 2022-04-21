@@ -1,0 +1,29 @@
+//oi
+inputs:
+    len_oi_fast(60);
+variables:
+    oi(0), oi_fast(0);
+ 
+//----------------------------------
+oi = close of data2;
+oi_fast = oi * 2 - Highest(oi, len_oi_fast) - Lowest(oi, len_oi_fast);
+ 
+//----------------------------------
+//start date setting
+condition9 = jul_dt > StringToDate("05/15/2017");
+ 
+if condition9 then begin
+    //----------------------------------
+    
+    //main
+    condition1 = oi_fast > 0;
+    if condition1 then begin
+        buy ("b enter") next bar at market;
+        //plot1(1);
+    end
+    else begin
+        sell ("b exit") next bar at market;
+        //plot1(-1);
+    end;
+    //----------------------------------
+end;
